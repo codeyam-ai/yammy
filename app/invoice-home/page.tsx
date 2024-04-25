@@ -295,7 +295,7 @@ export default function Example() {
                                       </div>
                                       <div
                                         className={classNames(
-                                          statuses[transaction.status],
+                                          // statuses[transaction.status],
                                           'rounded-md py-1 px-2 text-xs font-medium ring-1 ring-inset'
                                         )}
                                       >
@@ -418,7 +418,7 @@ export default function Example() {
                           <div className="font-medium text-gray-900">{client.lastInvoice.amount}</div>
                           <div
                             className={classNames(
-                              statuses[client.lastInvoice.status],
+                              // statuses[client.lastInvoice.status],
                               'rounded-md py-1 px-2 text-xs font-medium ring-1 ring-inset'
                             )}
                           >
