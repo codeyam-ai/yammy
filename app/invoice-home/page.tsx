@@ -10,7 +10,10 @@ import {
   PlusSmallIcon,
 } from '@heroicons/react/20/solid'
 import { BellIcon, XMarkIcon } from '@heroicons/react/24/outline'
-import classNames from '@lib/classNames'
+
+function classNames(...classes: string[]) {
+  return classes.filter(Boolean).join(' ')
+}
 
 const navigation = [
   { name: 'Home', href: '#' },

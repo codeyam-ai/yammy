@@ -10,9 +10,12 @@ import {
   XMarkIcon,
 } from '@heroicons/react/20/solid'
 import { CheckCircleIcon } from '@heroicons/react/24/solid'
-import classNames from '@lib/classNames'
 import { Fragment, useState } from 'react'
 import { useInvoiceActivity } from '../providers/InvoiceActivityProvider'
+
+function classNames(...classes: string[]) {
+  return classes.filter(Boolean).join(' ')
+}
 
 enum MoodName {
   Excited = 'excited',

@@ -1,9 +1,12 @@
-import classNames from '@/app/lib/classNames';
 import { Menu, Transition } from '@headlessui/react'
 import {
   EllipsisVerticalIcon
 } from '@heroicons/react/20/solid'
 import { Fragment } from 'react'
+
+function classNames(...classes: string[]) {
+  return classes.filter(Boolean).join(' ')
+}
 
 interface InvoiceHeaderProps {
   invoiceNumber: string;
