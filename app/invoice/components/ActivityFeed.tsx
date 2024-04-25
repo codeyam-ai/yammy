@@ -11,6 +11,7 @@ import {
   XMarkIcon,
 } from '@heroicons/react/20/solid'
 import { Listbox, Transition } from '@headlessui/react'
+import classNames from '@lib/classNames'
 
 const activity = [
   { id: 1, type: 'created', person: { name: 'Chelsea Hagon' }, date: '7d ago', dateTime: '2023-01-23T10:32' },
@@ -39,10 +40,6 @@ const moods = [
   { name: 'Thumbsy', value: 'thumbsy', icon: HandThumbUpIcon, iconColor: 'text-white', bgColor: 'bg-blue-500' },
   { name: 'I feel nothing', value: null, icon: XMarkIcon, iconColor: 'text-gray-400', bgColor: 'bg-transparent' },
 ]
-
-function classNames(...classes: string[]) {
-  return classes.filter(Boolean).join(' ')
-}
 
 export default function ActivityFeed() {
   const [selected, setSelected] = useState(moods[5])

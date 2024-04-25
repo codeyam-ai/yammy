@@ -10,6 +10,7 @@ import {
   PlusSmallIcon,
 } from '@heroicons/react/20/solid'
 import { BellIcon, XMarkIcon } from '@heroicons/react/24/outline'
+import classNames from '@lib/classNames'
 
 const navigation = [
   { name: 'Home', href: '#' },
@@ -110,10 +111,6 @@ const clients = [
     lastInvoice: { date: 'January 23, 2023', dateTime: '2023-01-23', amount: '$7,600.00', status: 'Paid' },
   },
 ]
-
-function classNames(...classes: string[]) {
-  return classes.filter(Boolean).join(' ')
-}
 
 export default function Example() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
