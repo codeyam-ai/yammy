@@ -1,16 +1,8 @@
 import {
   CalendarDaysIcon,
   CreditCardIcon,
-  EllipsisVerticalIcon,
-  FaceFrownIcon,
-  FaceSmileIcon,
-  FireIcon,
-  HandThumbUpIcon,
-  HeartIcon,
-  PaperClipIcon,
-  UserCircleIcon,
-  XMarkIcon as XMarkIconMini
-} from '@heroicons/react/20/solid'
+  UserCircleIcon
+} from '@heroicons/react/20/solid';
 
 interface InvoiceSummaryProps {
 
