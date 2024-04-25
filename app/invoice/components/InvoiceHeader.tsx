@@ -6,10 +6,12 @@ import {
 import { Fragment } from 'react'
 
 interface InvoiceHeaderProps {
-
+  invoiceNumber: string;
+  companyName: string;
+  companyLogoSrc: string;
 }
 
-const InvoiceHeader = ({ }: InvoiceHeaderProps) => {
+const InvoiceHeader = ({ invoiceNumber, companyName, companyLogoSrc }: InvoiceHeaderProps) => {
   return (
     <header className="relative isolate pt-16">
       <div className="absolute inset-0 -z-10 overflow-hidden" aria-hidden="true">
@@ -29,15 +31,15 @@ const InvoiceHeader = ({ }: InvoiceHeaderProps) => {
         <div className="mx-auto flex max-w-2xl items-center justify-between gap-x-8 lg:mx-0 lg:max-w-none">
           <div className="flex items-center gap-x-6">
             <img
-              src="https://tailwindui.com/img/logos/48x48/tuple.svg"
+              src={companyLogoSrc}
               alt=""
               className="h-16 w-16 flex-none rounded-full ring-1 ring-gray-900/10"
             />
             <h1>
               <div className="text-sm leading-6 text-gray-500">
-                Invoice <span className="text-gray-700">#00011</span>
+                Invoice <span className="text-gray-700">{invoiceNumber}</span>
               </div>
-              <div className="mt-1 text-base font-semibold leading-6 text-gray-900">Tuple, Inc</div>
+              <div className="mt-1 text-base font-semibold leading-6 text-gray-900">{companyName}</div>
             </h1>
           </div>
           <div className="flex items-center gap-x-4 sm:gap-x-6">
