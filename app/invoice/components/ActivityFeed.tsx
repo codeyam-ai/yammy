@@ -1,6 +1,5 @@
 "use client"
-import { Fragment, useState } from 'react'
-import { CheckCircleIcon } from '@heroicons/react/24/solid'
+import { Listbox, Transition } from '@headlessui/react'
 import {
   FaceFrownIcon,
   FaceSmileIcon,
@@ -10,39 +9,32 @@ import {
   PaperClipIcon,
   XMarkIcon,
 } from '@heroicons/react/20/solid'
-import { Listbox, Transition } from '@headlessui/react'
+import { CheckCircleIcon } from '@heroicons/react/24/solid'
 import classNames from '@lib/classNames'
+import { Fragment, useState } from 'react'
+import { useInvoiceActivity } from '../providers/InvoiceActivityProvider'
 
-const activity = [
-  { id: 1, type: 'created', person: { name: 'Chelsea Hagon' }, date: '7d ago', dateTime: '2023-01-23T10:32' },
-  { id: 2, type: 'edited', person: { name: 'Chelsea Hagon' }, date: '6d ago', dateTime: '2023-01-23T11:03' },
-  { id: 3, type: 'sent', person: { name: 'Chelsea Hagon' }, date: '6d ago', dateTime: '2023-01-23T11:24' },
-  {
-    id: 4,
-    type: 'commented',
-    person: {
-      name: 'Chelsea Hagon',
-      imageUrl:
-        'https://images.unsplash.com/photo-1550525811-e5869dd03032?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
-    },
-    comment: 'Called client, they reassured me the invoice would be paid by the 25th.',
-    date: '3d ago',
-    dateTime: '2023-01-23T15:56',
-  },
-  { id: 5, type: 'viewed', person: { name: 'Alex Curren' }, date: '2d ago', dateTime: '2023-01-24T09:12' },
-  { id: 6, type: 'paid', person: { name: 'Alex Curren' }, date: '1d ago', dateTime: '2023-01-24T09:20' },
-]
+enum MoodName {
+  Excited = 'excited',
+  Loved = 'loved',
+  Happy = 'happy',
+  Sad = 'sad',
+  Thumbsy = 'thumbsy',
+  Nothing = 'nothing',
+}
 const moods = [
-  { name: 'Excited', value: 'excited', icon: FireIcon, iconColor: 'text-white', bgColor: 'bg-red-500' },
-  { name: 'Loved', value: 'loved', icon: HeartIcon, iconColor: 'text-white', bgColor: 'bg-pink-400' },
-  { name: 'Happy', value: 'happy', icon: FaceSmileIcon, iconColor: 'text-white', bgColor: 'bg-green-400' },
-  { name: 'Sad', value: 'sad', icon: FaceFrownIcon, iconColor: 'text-white', bgColor: 'bg-yellow-400' },
-  { name: 'Thumbsy', value: 'thumbsy', icon: HandThumbUpIcon, iconColor: 'text-white', bgColor: 'bg-blue-500' },
-  { name: 'I feel nothing', value: null, icon: XMarkIcon, iconColor: 'text-gray-400', bgColor: 'bg-transparent' },
+  { name: MoodName.Excited, value: 'excited', icon: FireIcon, iconColor: 'text-white', bgColor: 'bg-red-500' },
+  { name: MoodName.Loved, value: 'loved', icon: HeartIcon, iconColor: 'text-white', bgColor: 'bg-pink-400' },
+  { name: MoodName.Happy, value: 'happy', icon: FaceSmileIcon, iconColor: 'text-white', bgColor: 'bg-green-400' },
+  { name: MoodName.Sad, value: 'sad', icon: FaceFrownIcon, iconColor: 'text-white', bgColor: 'bg-yellow-400' },
+  { name: MoodName.Thumbsy, value: 'thumbsy', icon: HandThumbUpIcon, iconColor: 'text-white', bgColor: 'bg-blue-500' },
+  { name: MoodName.Nothing, value: null, icon: XMarkIcon, iconColor: 'text-gray-400', bgColor: 'bg-transparent' },
 ]
 
 export default function ActivityFeed() {
   const [selected, setSelected] = useState(moods[5])
+
+  const activity = useInvoiceActivity();
 
   return (
     <>
@@ -191,7 +183,7 @@ export default function ActivityFeed() {
                                       aria-hidden="true"
                                     />
                                   </div>
-                                  <span className="ml-3 block truncate font-medium">{mood.name}</span>
+                                  <span className="ml-3 block truncate font-medium capitalize">{mood.name}</span>
                                 </div>
                               </Listbox.Option>
                             ))}

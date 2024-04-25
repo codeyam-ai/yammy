@@ -1,26 +1,11 @@
 "use client"
-import { Listbox, Menu, Transition } from '@headlessui/react'
-import {
-  CalendarDaysIcon,
-  CreditCardIcon,
-  EllipsisVerticalIcon,
-  FaceFrownIcon,
-  FaceSmileIcon,
-  FireIcon,
-  HandThumbUpIcon,
-  HeartIcon,
-  PaperClipIcon,
-  UserCircleIcon,
-  XMarkIcon as XMarkIconMini
-} from '@heroicons/react/20/solid'
-import { CheckCircleIcon } from '@heroicons/react/24/solid'
-import { Fragment, useState } from 'react'
-import Header from './components/Header'
-import InvoiceSummary from './components/InvoiceSummary'
-import { Invoice } from './types'
-import InvoiceDisplay from './components/InvoiceDisplay'
 import ActivityFeed from './components/ActivityFeed'
+import Header from './components/Header'
+import InvoiceDisplay from './components/InvoiceDisplay'
 import InvoiceHeader from './components/InvoiceHeader'
+import InvoiceSummary from './components/InvoiceSummary'
+import { InvoiceActivityProvider } from './providers/InvoiceActivityProvider'
+import { Invoice } from './types'
 
 const invoice: Invoice = {
   subTotal: '$8,800.00',
@@ -64,29 +49,25 @@ const invoice: Invoice = {
 
 export default function InvoicePage() {
   return (
-    <>
-      <Header />
-
-      <main>
-
-        <InvoiceHeader companyName='Tuple, Inc.' invoiceNumber='#00011' companyLogoSrc='https://tailwindui.com/img/logos/48x48/tuple.svg' />
-
-        <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
-          <div className="mx-auto grid max-w-2xl grid-cols-1 grid-rows-1 items-start gap-x-8 gap-y-8 lg:mx-0 lg:max-w-none lg:grid-cols-3">
-            <InvoiceSummary />
-
-            {/* Invoice */}
-            <InvoiceDisplay invoice={invoice} />
-
-            <div className="lg:col-start-3">
-              {/* Activity feed */}
-              <h2 className="text-sm font-semibold leading-6 text-gray-900">Activity</h2>
-              <ActivityFeed />
-
+    <InvoiceActivityProvider>
+      <>
+        <Header />
+        <main>
+          <InvoiceHeader companyName='Tuple, Inc.' invoiceNumber='#00011' companyLogoSrc='https://tailwindui.com/img/logos/48x48/tuple.svg' />
+          <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
+            <div className="mx-auto grid max-w-2xl grid-cols-1 grid-rows-1 items-start gap-x-8 gap-y-8 lg:mx-0 lg:max-w-none lg:grid-cols-3">
+              <InvoiceSummary />
+              {/* Invoice */}
+              <InvoiceDisplay invoice={invoice} />
+              <div className="lg:col-start-3">
+                {/* Activity feed */}
+                <h2 className="text-sm font-semibold leading-6 text-gray-900">Activity</h2>
+                <ActivityFeed />
+              </div>
             </div>
           </div>
-        </div>
-      </main>
-    </>
+        </main>
+      </>
+    </InvoiceActivityProvider>
   )
 }
