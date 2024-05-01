@@ -24,3 +24,4 @@ const UserProfile = ({ name, age, isActive }: UserProfileProps) => {
 };
 
 export default UserProfile;
+
