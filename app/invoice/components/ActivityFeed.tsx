@@ -11,7 +11,7 @@ import {
 } from '@heroicons/react/20/solid'
 import { CheckCircleIcon } from '@heroicons/react/24/solid'
 import { Fragment, useState } from 'react'
-import { useInvoiceActivity } from '../providers/InvoiceActivityProvider'
+import { Activity } from '../types'
 
 function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(' ')
@@ -34,10 +34,8 @@ const moods = [
   { name: MoodName.Nothing, value: null, icon: XMarkIcon, iconColor: 'text-gray-400', bgColor: 'bg-transparent' },
 ]
 
-export default function ActivityFeed() {
+export default function ActivityFeed({ activity }: { activity: Activity[] }) {
   const [selected, setSelected] = useState(moods[5])
-
-  const activity = useInvoiceActivity();
 
   return (
     <>

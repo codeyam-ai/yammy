@@ -4,8 +4,7 @@ import Header from './components/Header'
 import InvoiceDisplay from './components/InvoiceDisplay'
 import InvoiceHeader from './components/InvoiceHeader'
 import InvoiceSummary from './components/InvoiceSummary'
-import { InvoiceActivityProvider } from './providers/InvoiceActivityProvider'
-import { Invoice } from './types'
+import { Activity, Invoice } from './types'
 
 const invoice: Invoice = {
   subTotal: '$8,800.00',
@@ -47,27 +46,42 @@ const invoice: Invoice = {
   ],
 }
 
+const exampleActivities: Activity[] = [
+  { id: 1, type: 'created', person: { name: 'Chelsea Hagon' }, date: '7d ago', dateTime: '2023-01-23T10:32' },
+  { id: 2, type: 'edited', person: { name: 'Chelsea Hagon' }, date: '6d ago', dateTime: '2023-01-23T11:03' },
+  { id: 3, type: 'sent', person: { name: 'Chelsea Hagon' }, date: '6d ago', dateTime: '2023-01-23T11:24' },
+  {
+    id: 4,
+    type: 'commented',
+    person: { name: 'Chelsea Hagon', imageUrl: 'https://images.unsplash.com/photo-1550525811-e5869dd03032?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80' },
+    comment: 'Called client, they reassured me the invoice would be paid by the 25th.',
+    date: '3d ago',
+    dateTime: '2023-01-23T15:56',
+  },
+  { id: 5, type: 'viewed', person: { name: 'Alex Curren' }, date: '2d ago', dateTime: '2023-01-24T09:12' },
+  { id: 6, type: 'paid', person: { name: 'Alex Curren' }, date: '1d ago', dateTime: '2023-01-24T09:20' },
+];
+
+
 export default function InvoicePage() {
   return (
-    <InvoiceActivityProvider>
-      <>
-        <Header />
-        <main>
-          <InvoiceHeader companyName='Tuple, Inc.' invoiceNumber='#00011' companyLogoSrc='https://tailwindui.com/img/logos/48x48/tuple.svg' />
-          <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
-            <div className="mx-auto grid max-w-2xl grid-cols-1 grid-rows-1 items-start gap-x-8 gap-y-8 lg:mx-0 lg:max-w-none lg:grid-cols-3">
-              <InvoiceSummary />
-              {/* Invoice */}
-              <InvoiceDisplay invoice={invoice} />
-              <div className="lg:col-start-3">
-                {/* Activity feed */}
-                <h2 className="text-sm font-semibold leading-6 text-gray-900">Activity</h2>
-                <ActivityFeed />
-              </div>
+    <>
+      <Header />
+      <main>
+        <InvoiceHeader companyName='Tuple, Inc.' invoiceNumber='#00011' companyLogoSrc='https://tailwindui.com/img/logos/48x48/tuple.svg' />
+        <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
+          <div className="mx-auto grid max-w-2xl grid-cols-1 grid-rows-1 items-start gap-x-8 gap-y-8 lg:mx-0 lg:max-w-none lg:grid-cols-3">
+            <InvoiceSummary />
+            {/* Invoice */}
+            <InvoiceDisplay invoice={invoice} />
+            <div className="lg:col-start-3">
+              {/* Activity feed */}
+              <h2 className="text-sm font-semibold leading-6 text-gray-900">Activity</h2>
+              <ActivityFeed activity={exampleActivities} />
             </div>
           </div>
-        </main>
-      </>
-    </InvoiceActivityProvider>
+        </div>
+      </main>
+    </>
   )
 }
