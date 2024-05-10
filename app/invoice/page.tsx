@@ -22,6 +22,11 @@ const invoice: Invoice = {
     addressLine1: '886 Walter Street',
     addressLine2: 'New York, NY 12345',
   },
+  payment: {
+    madeBy: 'Alex Curren',
+    on: 'January 24, 2023',
+    method: 'MasterCard',
+  },
   items: [
     {
       id: 1,
@@ -83,7 +88,7 @@ export default function InvoicePage() {
         <InvoiceHeader companyName='Tuple, Inc.' invoiceNumber='#00011' companyLogoSrc='https://tailwindui.com/img/logos/48x48/tuple.svg' />
         <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
           <div className="mx-auto grid max-w-2xl grid-cols-1 grid-rows-1 items-start gap-x-8 gap-y-8 lg:mx-0 lg:max-w-none lg:grid-cols-3">
-            <InvoiceSummary />
+            <InvoiceSummary invoice={invoice} />
             {/* Invoice */}
             <InvoiceDisplay invoice={invoice} />
             <div className="lg:col-start-3">

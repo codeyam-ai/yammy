@@ -21,6 +21,11 @@ export type Invoice = {
   dueOn: string;
   from: CompanyInfo;
   to: CompanyInfo
+  payment?: {
+    madeBy: string;
+    on: string;
+    method: string;
+  }
   items: InvoiceItem[];
 };
 
