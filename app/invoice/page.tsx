@@ -10,6 +10,18 @@ const invoice: Invoice = {
   subTotal: '$8,800.00',
   tax: '$1,760.00',
   total: '$10,560.00',
+  issuedOn: 'January 23, 2023',
+  dueOn: 'January 31, 2023',
+  from: {
+    companyName: 'Acme, Inc.',
+    addressLine1: '7363 Cynthia Pass',
+    addressLine2: 'Toronto, ON N3Y 4H8',
+  },
+  to: {
+    companyName: 'Tuple, Inc',
+    addressLine1: '886 Walter Street',
+    addressLine2: 'New York, NY 12345',
+  },
   items: [
     {
       id: 1,

@@ -7,10 +7,20 @@ export type InvoiceItem = {
   price: string;
 };
 
+type CompanyInfo = {
+  companyName: string;
+  addressLine1: string;
+  addressLine2: string;
+};
+
 export type Invoice = {
   subTotal: string;
   tax: string;
   total: string;
+  issuedOn: string;
+  dueOn: string;
+  from: CompanyInfo;
+  to: CompanyInfo
   items: InvoiceItem[];
 };
 
