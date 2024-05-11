@@ -1,23 +1,74 @@
+import { CheckIcon, InformationCircleIcon, XMarkIcon } from '@heroicons/react/20/solid';
+import cn from '../lib/cn';
+
 interface BannerProps {
   message: string;
   type: 'success' | 'error' | 'info';
 }
 
-const Banner = ({ message, type }: BannerProps) => {
+export default function Banner({ message, type }: BannerProps) {
+  let bgFrom;
+  let bgTo;
+  switch (type) {
+    case 'success':
+      bgFrom = 'from-[#00FF00]';
+      bgTo = 'to-[#34D399]';
+      break;
+    case 'error':
+      bgFrom = 'from-[#FEE2E2]';
+      bgTo = 'to-[#F87171]';
+      break;
+    case 'info':
+      bgFrom = 'from-[#DBEAFE]';
+      bgTo = 'to-[#60A5FA]';
+      break;
+  }
+
   return (
-    <div
-      className={`${type === 'success'
-          ? 'bg-green-100 border-green-500 text-green-700'
-          : type === 'error'
-            ? 'bg-red-100 border-red-500 text-red-700'
-            : 'bg-blue-100 border-blue-500 text-blue-700'
-        } border px-4 py-3 rounded relative`}
-      role="alert"
-    >
-      <strong className="font-bold">{type === 'success' ? 'Success!' : type === 'error' ? 'Error!' : 'Info!'}</strong>
-      <span className="block sm:inline">{message}</span>
+    <div className="relative isolate flex items-center gap-x-6 overflow-hidden bg-gray-50 px-6 py-2.5 sm:px-3.5 sm:before:flex-1">
+      <div
+        className="absolute left-[max(-7rem,calc(50%-52rem))] top-1/2 -z-10 -translate-y-1/2 transform-gpu blur-2xl"
+        aria-hidden="true"
+      >
+        <div
+          className={cn("aspect-[577/310] w-[36.0625rem] bg-gradient-to-r opacity-30", bgFrom, bgTo)}
+          style={{
+            clipPath:
+              'polygon(74.8% 41.9%, 97.2% 73.2%, 100% 34.9%, 92.5% 0.4%, 87.5% 0%, 75% 28.6%, 58.5% 54.6%, 50.1% 56.8%, 46.9% 44%, 48.3% 17.4%, 24.7% 53.9%, 0% 27.9%, 11.9% 74.2%, 24.9% 54.1%, 68.6% 100%, 74.8% 41.9%)',
+          }}
+        />
+      </div>
+      <div
+        className="absolute left-[max(45rem,calc(50%+8rem))] top-1/2 -z-10 -translate-y-1/2 transform-gpu blur-2xl"
+        aria-hidden="true"
+      >
+        <div
+          className={cn("aspect-[577/310] w-[36.0625rem] bg-gradient-to-r opacity-30", bgFrom, bgTo)}
+          style={{
+            clipPath:
+              'polygon(74.8% 41.9%, 97.2% 73.2%, 100% 34.9%, 92.5% 0.4%, 87.5% 0%, 75% 28.6%, 58.5% 54.6%, 50.1% 56.8%, 46.9% 44%, 48.3% 17.4%, 24.7% 53.9%, 0% 27.9%, 11.9% 74.2%, 24.9% 54.1%, 68.6% 100%, 74.8% 41.9%)',
+          }}
+        />
+      </div>
+      <div className="flex flex-wrap items-center gap-x-4 gap-y-2">
+        {/* icon */}
+        {
+          {
+            success: <CheckIcon className="h-5 w-5 text-green-500" aria-hidden="true" />,
+            error: <XMarkIcon className="h-5 w-5 text-red-500" aria-hidden="true" />,
+            info: <InformationCircleIcon className="h-5 w-5 text-blue-500" aria-hidden="true" />,
+          }[type]
+        }
+        <p className="text-sm leading-6 text-gray-900">
+          <strong className="font-semibold">{message}</strong>
+        </p>
+      </div>
+      <div className="flex flex-1 justify-end">
+        <button type="button" className="-m-3 p-3 focus-visible:outline-offset-[-4px]">
+          <span className="sr-only">Dismiss</span>
+          <XMarkIcon className="h-5 w-5 text-gray-900" aria-hidden="true" />
+        </button>
+      </div>
     </div>
   );
-};
-
-export default Banner;
+}
