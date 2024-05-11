@@ -4,6 +4,7 @@ import Header from './Header';
 import Banner from './Banner';
 import CartItem from './CartItem';
 import OrderSummary from './OrderSummary';
+import RelatedProductItem from './RelatedProducts';
 
 export type Product = {
   id: number;
@@ -53,7 +54,18 @@ const products: Product[] = [
     imageAlt: 'Insulated bottle with white base and black snap lid.',
   },
 ]
-const relatedProducts = [
+
+export type RelatedProduct = {
+  id: number;
+  name: string;
+  href: string;
+  price: string;
+  color: string;
+  imageSrc: string;
+  imageAlt: string;
+};
+
+const relatedProducts: RelatedProduct[] = [
   {
     id: 1,
     name: 'Billfold Wallet',
@@ -126,27 +138,7 @@ export default function CartPage() {
 
           <div className="mt-6 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
             {relatedProducts.map((relatedProduct) => (
-              <div key={relatedProduct.id} className="group relative">
-                <div className="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-md lg:aspect-none group-hover:opacity-75 lg:h-80">
-                  <img
-                    src={relatedProduct.imageSrc}
-                    alt={relatedProduct.imageAlt}
-                    className="h-full w-full object-cover object-center lg:h-full lg:w-full"
-                  />
-                </div>
-                <div className="mt-4 flex justify-between">
-                  <div>
-                    <h3 className="text-sm text-gray-700">
-                      <a href={relatedProduct.href}>
-                        <span aria-hidden="true" className="absolute inset-0" />
-                        {relatedProduct.name}
-                      </a>
-                    </h3>
-                    <p className="mt-1 text-sm text-gray-500">{relatedProduct.color}</p>
-                  </div>
-                  <p className="text-sm font-medium text-gray-900">{relatedProduct.price}</p>
-                </div>
-              </div>
+              <RelatedProductItem key={relatedProduct.id} relatedProduct={relatedProduct} />
             ))}
           </div>
         </section>
