@@ -7,6 +7,7 @@ import OrderSummary from './OrderSummary';
 import RelatedProductItem from './RelatedProducts';
 import Footer from './Footer';
 import { Product } from './types/Product';
+import { RelatedProduct } from './types/RelatedProduct';
 
 const products: Product[] = [
   {
@@ -43,16 +44,6 @@ const products: Product[] = [
     imageAlt: 'Insulated bottle with white base and black snap lid.',
   },
 ]
-
-export type RelatedProduct = {
-  id: number;
-  name: string;
-  href: string;
-  price: string;
-  color: string;
-  imageSrc: string;
-  imageAlt: string;
-};
 
 const relatedProducts: RelatedProduct[] = [
   {

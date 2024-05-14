@@ -1,4 +1,4 @@
-import { RelatedProduct } from "./page";
+import { RelatedProduct } from "./types/RelatedProduct";
 
 interface RelatedProductItemProps {
   relatedProduct: RelatedProduct;
