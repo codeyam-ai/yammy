@@ -1,6 +1,18 @@
 "use client";
 import { CheckIcon, ClockIcon, XMarkIcon as XMarkIconMini } from '@heroicons/react/20/solid';
-import { Product } from './page';
+
+type Product = {
+  id: number;
+  name: string;
+  href: string;
+  price: string;
+  color: string;
+  size?: string;
+  inStock: boolean;
+  leadTime?: string;
+  imageSrc: string;
+  imageAlt: string;
+};
 
 type CartItemProps = {
   product: Product;
