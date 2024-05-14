@@ -6,19 +6,7 @@ import CartItem from './CartItem';
 import OrderSummary from './OrderSummary';
 import RelatedProductItem from './RelatedProducts';
 import Footer from './Footer';
-
-export type Product = {
-  id: number;
-  name: string;
-  href: string;
-  price: string;
-  color: string;
-  size?: string;
-  inStock: boolean;
-  leadTime?: string;
-  imageSrc: string;
-  imageAlt: string;
-};
+import { Product } from './types/Product';
 
 const products: Product[] = [
   {
