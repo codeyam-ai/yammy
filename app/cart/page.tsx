@@ -1,5 +1,5 @@
 "use client";
-import { CheckIcon, ClockIcon, QuestionMarkCircleIcon, XMarkIcon as XMarkIconMini } from '@heroicons/react/20/solid';
+//import { CheckIcon, ClockIcon, QuestionMarkCircleIcon, XMarkIcon as XMarkIconMini } from '@heroicons/react/20/solid';
 import Header from './Header';
 import Banner from './Banner';
 import CartItem from './CartItem';
