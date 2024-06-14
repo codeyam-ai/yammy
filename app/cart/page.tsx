@@ -62,7 +62,11 @@ export default function CartPage() {
 
   return (
     <div className="bg-white">
-      <Banner message="Get free delivery on orders over $100" type="info" />
+      <Banner
+        message="Get free delivery on orders over $100"
+        type="info"
+        showCloseButton={true}
+      />
       <Header />
 
       <main className="mx-auto max-w-2xl px-4 pb-24 pt-16 sm:px-6 lg:max-w-7xl lg:px-8">
