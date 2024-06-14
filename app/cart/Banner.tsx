@@ -3,9 +3,10 @@ import { CheckIcon, InformationCircleIcon, XMarkIcon } from '@heroicons/react/20
 interface BannerProps {
   message: string;
   type: 'success' | 'error' | 'info';
+  showCloseButton: boolean;
 }
 
-export default function Banner({ message, type }: BannerProps) {
+export default function Banner({ message, type, showCloseButton }: BannerProps) {
   let bgFrom;
   let bgTo;
   switch (type) {
@@ -63,10 +64,13 @@ export default function Banner({ message, type }: BannerProps) {
         </p>
       </div>
       <div className="flex flex-1 justify-end">
-        <button type="button" className="-m-3 p-3 focus-visible:outline-offset-[-4px]">
-          <span className="sr-only">Dismiss</span>
-          <XMarkIcon className="h-5 w-5 text-gray-900" aria-hidden="true" />
-        </button>
+        {
+          showCloseButton &&
+          (<button type="button" className="-m-3 p-3 focus-visible:outline-offset-[-4px]">
+            <span className="sr-only">Dismiss</span>
+            <XMarkIcon className="h-5 w-5 text-gray-900" aria-hidden="true" />
+          </button>)
+        }
       </div>
     </div>
   );
