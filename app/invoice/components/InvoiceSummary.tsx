@@ -11,7 +11,7 @@ interface InvoiceSummaryProps {
 
 const InvoiceSummary = ({ invoice }: InvoiceSummaryProps) => {
   return (
-    <div className="lg:col-start-3 lg:row-end-1">
+    <div className="lg:col-start-3 lg:row-end-1 bg-green-500">
       <h2 className="sr-only">Summary</h2>
       <div className="rounded-lg bg-gray-50 shadow-sm ring-1 ring-gray-900/5">
         <dl className={`flex flex-wrap ${invoice.payment ? '' : 'pb-6'}`}>
