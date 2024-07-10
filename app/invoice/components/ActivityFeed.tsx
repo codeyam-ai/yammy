@@ -1,5 +1,5 @@
-"use client"
-import { Listbox, Transition } from '@headlessui/react'
+"use client";
+import { Listbox, Transition } from "@headlessui/react";
 import {
   FaceFrownIcon,
   FaceSmileIcon,
@@ -8,34 +8,71 @@ import {
   HeartIcon,
   PaperClipIcon,
   XMarkIcon,
-} from '@heroicons/react/20/solid'
-import { CheckCircleIcon } from '@heroicons/react/24/solid'
-import { Fragment, useState } from 'react'
-import { Activity } from '../types'
+} from "@heroicons/react/20/solid";
+import { CheckCircleIcon } from "@heroicons/react/24/solid";
+import { Fragment, useState } from "react";
+import { Activity } from "../types";
 
 function classNames(...classes: string[]) {
-  return classes.filter(Boolean).join(' ')
+  return classes.filter(Boolean).join(" ");
 }
 
 enum MoodName {
-  Excited = 'excited',
-  Loved = 'loved',
-  Happy = 'happy',
-  Sad = 'sad',
-  Thumbsy = 'thumbsy',
-  Nothing = 'nothing',
+  Excited = "excited",
+  Loved = "loved",
+  Happy = "happy",
+  Sad = "sad",
+  Thumbsy = "thumbsy",
+  Nothing = "nothing",
 }
+
 const moods = [
-  { name: MoodName.Excited, value: 'excited', icon: FireIcon, iconColor: 'text-white', bgColor: 'bg-red-500' },
-  { name: MoodName.Loved, value: 'loved', icon: HeartIcon, iconColor: 'text-white', bgColor: 'bg-pink-400' },
-  { name: MoodName.Happy, value: 'happy', icon: FaceSmileIcon, iconColor: 'text-white', bgColor: 'bg-green-400' },
-  { name: MoodName.Sad, value: 'sad', icon: FaceFrownIcon, iconColor: 'text-white', bgColor: 'bg-yellow-400' },
-  { name: MoodName.Thumbsy, value: 'thumbsy', icon: HandThumbUpIcon, iconColor: 'text-white', bgColor: 'bg-blue-500' },
-  { name: MoodName.Nothing, value: null, icon: XMarkIcon, iconColor: 'text-gray-400', bgColor: 'bg-transparent' },
-]
+  {
+    name: MoodName.Excited,
+    value: "excited",
+    icon: FireIcon,
+    iconColor: "text-white",
+    bgColor: "bg-red-500",
+  },
+  {
+    name: MoodName.Loved,
+    value: "loved",
+    icon: HeartIcon,
+    iconColor: "text-white",
+    bgColor: "bg-pink-400",
+  },
+  {
+    name: MoodName.Happy,
+    value: "happy",
+    icon: FaceSmileIcon,
+    iconColor: "text-white",
+    bgColor: "bg-green-400",
+  },
+  {
+    name: MoodName.Sad,
+    value: "sad",
+    icon: FaceFrownIcon,
+    iconColor: "text-white",
+    bgColor: "bg-yellow-400",
+  },
+  {
+    name: MoodName.Thumbsy,
+    value: "thumbsy",
+    icon: HandThumbUpIcon,
+    iconColor: "text-white",
+    bgColor: "bg-blue-500",
+  },
+  {
+    name: MoodName.Nothing,
+    value: null,
+    icon: XMarkIcon,
+    iconColor: "text-gray-400",
+    bgColor: "bg-transparent",
+  },
+];
 
 export default function ActivityFeed({ activity }: { activity: Activity[] }) {
-  const [selected, setSelected] = useState(moods[5])
+  const [selected, setSelected] = useState(moods[5]);
 
   return (
     <>
@@ -44,13 +81,13 @@ export default function ActivityFeed({ activity }: { activity: Activity[] }) {
           <li key={activityItem.id} className="relative flex gap-x-4">
             <div
               className={classNames(
-                activityItemIdx === activity.length - 1 ? 'h-6' : '-bottom-6',
-                'absolute left-0 top-0 flex w-6 justify-center'
+                activityItemIdx === activity.length - 1 ? "h-6" : "-bottom-6",
+                "absolute left-0 top-0 flex w-6 justify-center"
               )}
             >
               <div className="w-px bg-gray-200" />
             </div>
-            {activityItem.type === 'commented' ? (
+            {activityItem.type === "commented" ? (
               <>
                 <img
                   src={activityItem.person.imageUrl}
@@ -60,29 +97,45 @@ export default function ActivityFeed({ activity }: { activity: Activity[] }) {
                 <div className="flex-auto rounded-md p-3 ring-1 ring-inset ring-gray-200">
                   <div className="flex justify-between gap-x-4">
                     <div className="py-0.5 text-xs leading-5 text-gray-500">
-                      <span className="font-medium text-gray-900">{activityItem.person.name}</span> commented
+                      <span className="font-medium text-gray-900">
+                        {activityItem.person.name}
+                      </span>{" "}
+                      commented
                     </div>
-                    <time dateTime={activityItem.dateTime} className="flex-none py-0.5 text-xs leading-5 text-gray-500">
+                    <time
+                      dateTime={activityItem.dateTime}
+                      className="flex-none py-0.5 text-xs leading-5 text-gray-500"
+                    >
                       {activityItem.date}
                     </time>
                   </div>
-                  <p className="text-sm leading-6 text-gray-500">{activityItem.comment}</p>
+                  <p className="text-sm leading-6 text-gray-500">
+                    {activityItem.comment}
+                  </p>
                 </div>
               </>
             ) : (
               <>
                 <div className="relative flex h-6 w-6 flex-none items-center justify-center bg-white">
-                  {activityItem.type === 'paid' ? (
-                    <CheckCircleIcon className="h-6 w-6 text-indigo-600" aria-hidden="true" />
+                  {activityItem.type === "paid" ? (
+                    <CheckCircleIcon
+                      className="h-6 w-6 text-indigo-600"
+                      aria-hidden="true"
+                    />
                   ) : (
                     <div className="h-1.5 w-1.5 rounded-full bg-gray-100 ring-1 ring-gray-300" />
                   )}
                 </div>
                 <p className="flex-auto py-0.5 text-xs leading-5 text-gray-500">
-                  <span className="font-medium text-gray-900">{activityItem.person.name}</span> {activityItem.type} the
-                  invoice.
+                  <span className="font-medium text-gray-900">
+                    {activityItem.person.name}
+                  </span>{" "}
+                  {activityItem.type} the invoice.
                 </p>
-                <time dateTime={activityItem.dateTime} className="flex-none py-0.5 text-xs leading-5 text-gray-500">
+                <time
+                  dateTime={activityItem.dateTime}
+                  className="flex-none py-0.5 text-xs leading-5 text-gray-500"
+                >
                   {activityItem.date}
                 </time>
               </>
@@ -109,7 +162,7 @@ export default function ActivityFeed({ activity }: { activity: Activity[] }) {
               id="comment"
               className="block w-full resize-none border-0 bg-transparent py-1.5 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
               placeholder="Add your comment..."
-              defaultValue={''}
+              defaultValue={""}
             />
           </div>
 
@@ -128,13 +181,18 @@ export default function ActivityFeed({ activity }: { activity: Activity[] }) {
                 <Listbox value={selected} onChange={setSelected}>
                   {({ open }) => (
                     <>
-                      <Listbox.Label className="sr-only">Your mood</Listbox.Label>
+                      <Listbox.Label className="sr-only">
+                        Your mood
+                      </Listbox.Label>
                       <div className="relative">
                         <Listbox.Button className="relative -m-2.5 flex h-10 w-10 items-center justify-center rounded-full text-gray-400 hover:text-gray-500">
                           <span className="flex items-center justify-center">
                             {selected.value === null ? (
                               <span>
-                                <FaceSmileIcon className="h-5 w-5 flex-shrink-0" aria-hidden="true" />
+                                <FaceSmileIcon
+                                  className="h-5 w-5 flex-shrink-0"
+                                  aria-hidden="true"
+                                />
                                 <span className="sr-only">Add your mood</span>
                               </span>
                             ) : (
@@ -142,10 +200,13 @@ export default function ActivityFeed({ activity }: { activity: Activity[] }) {
                                 <span
                                   className={classNames(
                                     selected.bgColor,
-                                    'flex h-8 w-8 items-center justify-center rounded-full'
+                                    "flex h-8 w-8 items-center justify-center rounded-full"
                                   )}
                                 >
-                                  <selected.icon className="h-5 w-5 flex-shrink-0 text-white" aria-hidden="true" />
+                                  <selected.icon
+                                    className="h-5 w-5 flex-shrink-0 text-white"
+                                    aria-hidden="true"
+                                  />
                                 </span>
                                 <span className="sr-only">{selected.name}</span>
                               </span>
@@ -166,8 +227,8 @@ export default function ActivityFeed({ activity }: { activity: Activity[] }) {
                                 key={mood.value}
                                 className={({ active }) =>
                                   classNames(
-                                    active ? 'bg-gray-100' : 'bg-white',
-                                    'relative cursor-default select-none px-3 py-2'
+                                    active ? "bg-gray-100" : "bg-white",
+                                    "relative cursor-default select-none px-3 py-2"
                                   )
                                 }
                                 value={mood}
@@ -176,15 +237,20 @@ export default function ActivityFeed({ activity }: { activity: Activity[] }) {
                                   <div
                                     className={classNames(
                                       mood.bgColor,
-                                      'flex h-8 w-8 items-center justify-center rounded-full'
+                                      "flex h-8 w-8 items-center justify-center rounded-full"
                                     )}
                                   >
                                     <mood.icon
-                                      className={classNames(mood.iconColor, 'h-5 w-5 flex-shrink-0')}
+                                      className={classNames(
+                                        mood.iconColor,
+                                        "h-5 w-5 flex-shrink-0"
+                                      )}
                                       aria-hidden="true"
                                     />
                                   </div>
-                                  <span className="ml-3 block truncate font-medium capitalize">{mood.name}</span>
+                                  <span className="ml-3 block truncate font-medium capitalize">
+                                    {mood.name}
+                                  </span>
                                 </div>
                               </Listbox.Option>
                             ))}
@@ -206,5 +272,6 @@ export default function ActivityFeed({ activity }: { activity: Activity[] }) {
         </form>
       </div>
     </>
-  )
+  );
 }
+
