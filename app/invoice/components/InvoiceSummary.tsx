@@ -13,7 +13,7 @@ const InvoiceSummary = ({ invoice }: InvoiceSummaryProps) => {
   return (
     <div className="lg:col-start-3 lg:row-end-1">
       <h2 className="sr-only">Summary</h2>
-      <div className="rounded-lg bg-gray-50 shadow-sm ring-1 ring-gray-900/5">
+      <div className="rounded-lg bg-emerald-300 shadow-sm ring-1 ring-gray-900/5">
         <dl className={`flex flex-wrap ${invoice.payment ? '' : 'pb-6'}`}>
           <div className="flex-auto pl-6 pt-6">
             <dt className="text-sm font-semibold leading-6 text-gray-900">Amount</dt>
